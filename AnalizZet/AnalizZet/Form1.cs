@@ -30,7 +30,10 @@ namespace AnalizZet
         Point? positionn = null;
         ToolTip toolTip = new ToolTip();
         double saniye = 1.0, currentSaniye;
-
+        public string veriYolu { get; set; }
+        public string videoYolu { get; set; }
+        public string kayitYeri { get; set; }
+        public string etiketDosyaAdi { get; set; }
         int xa, saniyeTut, i = 0, sat = 1;
 
         private void lineChart3_MouseClick(object sender, MouseEventArgs e)
@@ -50,9 +53,9 @@ namespace AnalizZet
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            string dosyaAdi = "Test1";
-            Directory.CreateDirectory("C:/Users/mmhus/Desktop/Veri Analizi/" + dosyaAdi);
-            streamWriter = new StreamWriter("C:/Users/mmhus/Desktop/Veri Analizi/"+dosyaAdi+"/EtiketliVeri.txt");
+            
+            Directory.CreateDirectory(kayitYeri);
+            streamWriter = new StreamWriter(etiketDosyaAdi);
             //if (Directory.Exists("C:/Users/mmhus/Desktop/EtiketliVeri.txt"))
             //{
             //    MessageBox.Show("Bu isimde bir dosya daha önceden oluşturulmuş");
@@ -120,9 +123,13 @@ namespace AnalizZet
         {
             if (i == 0)
             {
-                xdegerD = xdeger.Split(';');
-                i++;
-                mediaPlayer.Ctlcontrols.play();
+                if(xdeger != null)
+                {
+                    xdegerD = xdeger.Split(';');
+                    i++;
+                    mediaPlayer.Ctlcontrols.play();
+                }
+                
             }
             else
             {
@@ -147,8 +154,11 @@ namespace AnalizZet
                         lineChart.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
                         lineChart.ChartAreas[0].AxisX.ScaleView.Zoom(Convert.ToDouble(xdegerD[i])+2, Convert.ToDouble(xdegerD[i]) + 202);
                         lineChart1.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
+                        lineChart1.ChartAreas[0].AxisX.ScaleView.Zoom(Convert.ToDouble(xdegerD[i]) + 2, Convert.ToDouble(xdegerD[i]) + 202);
                         lineChart2.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
+                        lineChart2.ChartAreas[0].AxisX.ScaleView.Zoom(Convert.ToDouble(xdegerD[i]) + 2, Convert.ToDouble(xdegerD[i]) + 202);
                         lineChart3.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
+                        lineChart3.ChartAreas[0].AxisX.ScaleView.Zoom(Convert.ToDouble(xdegerD[i]) + 2, Convert.ToDouble(xdegerD[i]) + 202);
                         dGV.CurrentCell = dGV.Rows[Convert.ToInt32(xdegerD[i])].Cells[0];
                         dGV.FirstDisplayedScrollingRowIndex = Convert.ToInt32(xdegerD[i]);
                         lineChart.ChartAreas[0].CursorX.SetSelectionPosition(Convert.ToInt32(xdegerD[i]), Convert.ToInt32(xdegerD[i + 1]));
@@ -171,12 +181,14 @@ namespace AnalizZet
 
         private void grafikCiz_Click(object sender, EventArgs e)
         {
+            timer1.Stop();
             Form3 fomr3 = new Form3();
-            fomr3.ShowDialog();
+            fomr3.Show();
         }
 
         private void basaAl_Click(object sender, EventArgs e)
         {
+            timer1.Stop();
             lineChart.ChartAreas[0].CursorX.SelectionStart = 0;
             lineChart.ChartAreas[0].CursorX.SelectionEnd = 0;
             lineChart1.ChartAreas[0].CursorX.SelectionStart = 0;
@@ -186,7 +198,7 @@ namespace AnalizZet
             lineChart3.ChartAreas[0].CursorX.SelectionStart = 0;
             lineChart3.ChartAreas[0].CursorX.SelectionEnd = 0;
             mediaPlayer.Ctlcontrols.pause();
-            timer1.Stop();
+            
         }
 
         private void lineChart_MouseClick(object sender, MouseEventArgs e)
@@ -236,7 +248,7 @@ namespace AnalizZet
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            StreamReader = new System.IO.StreamReader("C:\\Users\\mmhus\\Desktop\\veri2.txt");
+            StreamReader = new System.IO.StreamReader(veriYolu);
             columnN = StreamReader.ReadLine().Split(';');
             if (sayac == 1)
             {
@@ -290,7 +302,7 @@ namespace AnalizZet
             lineChart3.ChartAreas[0].AxisX.ScaleView.Zoomable = true;
             lineChart3.ChartAreas[0].CursorX.IsUserEnabled = true;
             lineChart3.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
-            mediaPlayer.URL = "C:\\Users\\mmhus\\Desktop\\VID28 Kas 2018.mp4";
+            mediaPlayer.URL = videoYolu;
             mediaPlayer.settings.rate = 1.0;
         }
 
