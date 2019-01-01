@@ -24,9 +24,11 @@ namespace AnalizZet
         int sayac = 1;
         DataTable dt = new DataTable();
         DataRow dr;
+        public static string yol="";
         private void Form3_Load(object sender, EventArgs e)
         {
-            StreamReader = new System.IO.StreamReader("C:\\Users\\mmhus\\Desktop\\veri2.txt");
+            Form1 form1 = new Form1();
+            StreamReader = new System.IO.StreamReader(yol);
             columnN = StreamReader.ReadLine().Split(';');
             if (sayac == 1)
             {
