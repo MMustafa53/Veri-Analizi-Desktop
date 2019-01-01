@@ -53,5 +53,17 @@ namespace AnalizZet
 
             }
         }
+
+        private void girisEkrani_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void girisEkrani_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Form1 form1 = new Form1();
+            form1.Show();
+            Close();
+        }
     }
 }
