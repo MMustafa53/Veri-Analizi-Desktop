@@ -20,6 +20,8 @@ namespace AnalizZet
         Form1 form1;
         Form3 form3;
         string kayitYeri = "";
+        int sayi = 1;
+        string dosyAdi;
         string[] etiketDosyaAdi;
         private void veriSecBtn_Click(object sender, EventArgs e)
         {
@@ -30,6 +32,7 @@ namespace AnalizZet
             {
                 veriYoluTxt.Text = veriFile.FileName;
                 veriDosyaAdi.Text = veriFile.SafeFileName;
+                dosyAdi = "\\"+veriFile.SafeFileName;
             }
         }
 
@@ -59,12 +62,12 @@ namespace AnalizZet
                 kayitYeri = "";
                 for (int i = 0; i < etiketDosyaAdi.Length - 1; i++)
                 {
-                    if(i == etiketDosyaAdi.Length-2)
+                    if (i == etiketDosyaAdi.Length - 2)
                         kayitYeri += etiketDosyaAdi[i];
                     else
                         kayitYeri += etiketDosyaAdi[i] + "\\";
                 }
-                label7.Text = kayitYeri+"\\"+etiketDosyaAdi[etiketDosyaAdi.Length-1];
+                label7.Text = kayitYeri + "\\" + etiketDosyaAdi[etiketDosyaAdi.Length - 1];
             }
 
 
@@ -73,8 +76,33 @@ namespace AnalizZet
         {
             if (veriYoluTxt.Text != "-" && videoTxt.Text != "-" && kayitYeri != "")
             {
+                string tempLineValue;
+
+                using (StreamReader inputReader = new StreamReader(veriYoluTxt.Text))
+                {
+                    using (StreamWriter outputWriter = File.AppendText(kayitYeri+dosyAdi))
+                    {
+                        while (null != (tempLineValue = inputReader.ReadLine()))
+                        {
+                            if(sayi == 1)
+                            {
+                                if (tempLineValue == "AccX;AccY;AccZ;GraX;GraY;GraZ;LAX;LAY;LAZ;GyroX;GyroY;GyroZ;Time2;")
+                                {
+
+                                }
+                                else
+                                {
+                                    outputWriter.WriteLine("AccX;AccY;AccZ;GraX;GraY;GraZ;LAX;LAY;LAZ;GyroX;GyroY;GyroZ;Time2;");
+                                }
+                                sayi++;
+                            }
+                            outputWriter.WriteLine(tempLineValue.Replace(",", "."));
+                        }
+                    }
+                }
+
                 form1 = new Form1();
-                form1.veriYolu = veriYoluTxt.Text;
+                form1.veriYolu = kayitYeri+dosyAdi;
                 form1.videoYolu = videoTxt.Text;
                 form1.kayitYeri = kayitYeri;
                 form1.etiketDosyaAdi = label7.Text;
@@ -87,6 +115,11 @@ namespace AnalizZet
             {
                 MessageBox.Show("Verinizi ve Videonuzu girdiğinizden emin olunuz ve etiketli veri için dosya adı girip kaydedilecek yeri seçiniz", "Bilgi", MessageBoxButtons.OKCancel);
             }
+        }
+
+        private void girisEkrani_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

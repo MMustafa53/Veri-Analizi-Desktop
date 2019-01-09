@@ -228,6 +228,7 @@
             this.Controls.Add(this.veriSecBtn);
             this.Name = "girisEkrani";
             this.Text = "girisEkrani";
+            this.Load += new System.EventHandler(this.girisEkrani_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
