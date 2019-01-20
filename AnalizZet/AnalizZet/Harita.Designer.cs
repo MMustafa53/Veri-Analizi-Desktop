@@ -56,7 +56,7 @@
             this.map.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.map.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.map.ShowTileGridLines = false;
-            this.map.Size = new System.Drawing.Size(293, 222);
+            this.map.Size = new System.Drawing.Size(997, 533);
             this.map.TabIndex = 0;
             this.map.Zoom = 0D;
             // 
