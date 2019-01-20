@@ -36,6 +36,12 @@ namespace AnalizZet
         public string etiketDosyaAdi { get; set; }
         int xa, saniyeTut, i = 0, sat = 1;
 
+        private void rotaCiz_Click(object sender, EventArgs e)
+        {
+            Harita harita = new Harita();
+            harita.Show();
+        }
+
         private void lineChart3_MouseClick(object sender, MouseEventArgs e)
         {
             chartClick(e,lineChart3);
@@ -121,12 +127,14 @@ namespace AnalizZet
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+           
             if (i == 0)
             {
                 if(xdeger != null)
                 {
                     xdegerD = xdeger.Split(';');
                     i++;
+                    mediaPlayer.Ctlcontrols.currentPosition = 2.0;
                     mediaPlayer.Ctlcontrols.play();
                 }
                 

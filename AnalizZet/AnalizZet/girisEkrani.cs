@@ -21,7 +21,7 @@ namespace AnalizZet
         Form3 form3;
         string kayitYeri = "";
         int sayi = 1;
-        string dosyAdi;
+        string dosyAdi,konum;
         string[] etiketDosyaAdi;
         private void veriSecBtn_Click(object sender, EventArgs e)
         {
@@ -33,6 +33,7 @@ namespace AnalizZet
                 veriYoluTxt.Text = veriFile.FileName;
                 veriDosyaAdi.Text = veriFile.SafeFileName;
                 dosyAdi = "\\"+veriFile.SafeFileName;
+                konum = veriFile.FileName.Replace("Veri.txt", "Konum.txt");
             }
         }
 
@@ -106,7 +107,8 @@ namespace AnalizZet
                 form1.videoYolu = videoTxt.Text;
                 form1.kayitYeri = kayitYeri;
                 form1.etiketDosyaAdi = label7.Text;
-                Form3.yol = veriYoluTxt.Text;
+                Harita.konumlar = konum;
+                Form3.yol = kayitYeri+dosyAdi;
                 this.Hide();
                 form1.ShowDialog();
                 this.Close();

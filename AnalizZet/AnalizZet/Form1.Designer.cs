@@ -30,14 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.mediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
             this.lineChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dGV = new System.Windows.Forms.DataGridView();
@@ -49,6 +49,7 @@
             this.lineChart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lineChart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lineChart3 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.rotaCiz = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.mediaPlayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lineChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dGV)).BeginInit();
@@ -68,11 +69,11 @@
             // 
             // lineChart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.lineChart.ChartAreas.Add(chartArea1);
+            chartArea5.Name = "ChartArea1";
+            this.lineChart.ChartAreas.Add(chartArea5);
             this.lineChart.Cursor = System.Windows.Forms.Cursors.Default;
-            legend1.Name = "Legend1";
-            this.lineChart.Legends.Add(legend1);
+            legend5.Name = "Legend1";
+            this.lineChart.Legends.Add(legend5);
             this.lineChart.Location = new System.Drawing.Point(304, 12);
             this.lineChart.Name = "lineChart";
             this.lineChart.Size = new System.Drawing.Size(475, 250);
@@ -138,11 +139,11 @@
             // 
             // lineChart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.lineChart1.ChartAreas.Add(chartArea2);
+            chartArea6.Name = "ChartArea1";
+            this.lineChart1.ChartAreas.Add(chartArea6);
             this.lineChart1.Cursor = System.Windows.Forms.Cursors.Default;
-            legend2.Name = "Legend1";
-            this.lineChart1.Legends.Add(legend2);
+            legend6.Name = "Legend1";
+            this.lineChart1.Legends.Add(legend6);
             this.lineChart1.Location = new System.Drawing.Point(304, 294);
             this.lineChart1.Name = "lineChart1";
             this.lineChart1.Size = new System.Drawing.Size(475, 250);
@@ -152,11 +153,11 @@
             // 
             // lineChart2
             // 
-            chartArea3.Name = "ChartArea1";
-            this.lineChart2.ChartAreas.Add(chartArea3);
+            chartArea7.Name = "ChartArea1";
+            this.lineChart2.ChartAreas.Add(chartArea7);
             this.lineChart2.Cursor = System.Windows.Forms.Cursors.Default;
-            legend3.Name = "Legend1";
-            this.lineChart2.Legends.Add(legend3);
+            legend7.Name = "Legend1";
+            this.lineChart2.Legends.Add(legend7);
             this.lineChart2.Location = new System.Drawing.Point(803, 13);
             this.lineChart2.Name = "lineChart2";
             this.lineChart2.Size = new System.Drawing.Size(475, 250);
@@ -166,11 +167,11 @@
             // 
             // lineChart3
             // 
-            chartArea4.Name = "ChartArea1";
-            this.lineChart3.ChartAreas.Add(chartArea4);
+            chartArea8.Name = "ChartArea1";
+            this.lineChart3.ChartAreas.Add(chartArea8);
             this.lineChart3.Cursor = System.Windows.Forms.Cursors.Default;
-            legend4.Name = "Legend1";
-            this.lineChart3.Legends.Add(legend4);
+            legend8.Name = "Legend1";
+            this.lineChart3.Legends.Add(legend8);
             this.lineChart3.Location = new System.Drawing.Point(803, 294);
             this.lineChart3.Name = "lineChart3";
             this.lineChart3.Size = new System.Drawing.Size(475, 250);
@@ -178,12 +179,23 @@
             this.lineChart3.Text = "chart1";
             this.lineChart3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lineChart3_MouseClick);
             // 
+            // rotaCiz
+            // 
+            this.rotaCiz.Location = new System.Drawing.Point(1286, 126);
+            this.rotaCiz.Name = "rotaCiz";
+            this.rotaCiz.Size = new System.Drawing.Size(52, 23);
+            this.rotaCiz.TabIndex = 12;
+            this.rotaCiz.Text = "Rota Çiz";
+            this.rotaCiz.UseVisualStyleBackColor = true;
+            this.rotaCiz.Click += new System.EventHandler(this.rotaCiz_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.rotaCiz);
             this.Controls.Add(this.lineChart3);
             this.Controls.Add(this.lineChart2);
             this.Controls.Add(this.lineChart1);
@@ -196,7 +208,7 @@
             this.Controls.Add(this.mediaPlayer);
             this.KeyPreview = true;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Veri Etiketle";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -226,6 +238,7 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart lineChart1;
         private System.Windows.Forms.DataVisualization.Charting.Chart lineChart2;
         private System.Windows.Forms.DataVisualization.Charting.Chart lineChart3;
+        private System.Windows.Forms.Button rotaCiz;
     }
 }
 

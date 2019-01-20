@@ -227,7 +227,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.veriSecBtn);
             this.Name = "girisEkrani";
-            this.Text = "girisEkrani";
+            this.Text = "Giriş Ekranı";
             this.Load += new System.EventHandler(this.girisEkrani_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

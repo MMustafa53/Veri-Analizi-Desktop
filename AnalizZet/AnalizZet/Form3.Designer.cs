@@ -326,7 +326,7 @@
             this.Controls.Add(this.chart2);
             this.Controls.Add(this.chart1);
             this.Name = "Form3";
-            this.Text = "Form3";
+            this.Text = "Ayrı Grafikler";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form3_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
