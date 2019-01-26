@@ -134,7 +134,7 @@ namespace AnalizZet
                 {
                     xdegerD = xdeger.Split(';');
                     i++;
-                    mediaPlayer.Ctlcontrols.currentPosition = 2.0;
+                    mediaPlayer.Ctlcontrols.currentPosition = 1.0;
                     mediaPlayer.Ctlcontrols.play();
                 }
                 
