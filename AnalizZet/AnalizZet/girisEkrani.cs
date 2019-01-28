@@ -26,7 +26,7 @@ namespace AnalizZet
         private void veriSecBtn_Click(object sender, EventArgs e)
         {
             OpenFileDialog veriFile = new OpenFileDialog();
-            veriFile.Filter = "Metin Dosyası |*.txt";
+            veriFile.Filter = "Metin Dosyası |*.txt|Bütün Dosyalar|*.*";
             veriFile.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             if (veriFile.ShowDialog() == DialogResult.OK)
             {
@@ -40,7 +40,7 @@ namespace AnalizZet
         private void videoBtn_Click(object sender, EventArgs e)
         {
             OpenFileDialog videoFile = new OpenFileDialog();
-            videoFile.Filter = "Video Dosyası |*.mp4";
+            videoFile.Filter = "Video Dosyası |*.mp4|Bütün Dosyalar|*.*";
             videoFile.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             if (videoFile.ShowDialog() == DialogResult.OK)
             {

@@ -159,6 +159,10 @@ namespace AnalizZet
 
                     else
                     {
+                        //mediaPlayer.Ctlcontrols.pause();
+                        if(i>=2)
+                            mediaPlayer.Ctlcontrols.currentPosition = i-2;
+                        //mediaPlayer.Ctlcontrols.play();
                         lineChart.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
                         lineChart.ChartAreas[0].AxisX.ScaleView.Zoom(Convert.ToDouble(xdegerD[i])+2, Convert.ToDouble(xdegerD[i]) + 202);
                         lineChart1.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
@@ -438,7 +442,7 @@ namespace AnalizZet
                     {
                         double xx = chart.ChartAreas[0].AxisX.PixelPositionToValue(poos.X);
                         xa = Convert.ToInt32(xx);
-                        MessageBox.Show(xa + "satırına tıklandı");
+                        MessageBox.Show(xa + " satırına tıklandı");
                     }
 
                 }
@@ -452,11 +456,11 @@ namespace AnalizZet
                         break;
                     }
                 }
-                MessageBox.Show("Video " + saniyeTut.ToString() + ".saniyeden itibaren oynatılıyor", "Bilgi");
+                MessageBox.Show("Video " + saniyeTut.ToString() + " .saniyeden itibaren oynatılıyor", "Bilgi");
                 mediaPlayer.Ctlcontrols.stop();
-                mediaPlayer.Ctlcontrols.currentPosition = saniyeTut;
+                mediaPlayer.Ctlcontrols.currentPosition = saniyeTut-2;
                 mediaPlayer.Ctlcontrols.play();
-                i = saniyeTut;
+                i = saniyeTut-2;
                 dGV.CurrentCell = dGV.Rows[Convert.ToInt32(xdegerD[i])].Cells[0];
                 dGV.FirstDisplayedScrollingRowIndex = Convert.ToInt32(xdegerD[i]);
                 chart.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
