@@ -75,7 +75,7 @@ namespace AnalizZet
                 satirD = new string[1];
                 sat = 1;
             }
-            streamWriter.WriteLine("AccX;AccY;AccZ;GraX;GraY;GraZ;LAX;LAY;LAZ;GyroX;GyroY;GyroZ;Time2;Etiket");
+            //streamWriter.WriteLine("AccX;AccY;AccZ;GraX;GraY;GraZ;LAX;LAY;LAZ;GyroX;GyroY;GyroZ;Time2;Etiket");
             for (int k = 0; k < sayac - 2; k++)
             {
                 if (sat != satirD.Length && satirD != null)
@@ -110,7 +110,7 @@ namespace AnalizZet
                         }
 
                     }
-                    else if (k + 1 == Convert.ToInt32(satirD[sat + 1]))
+                    else if (k + 2 == Convert.ToInt32(satirD[sat + 1]))
                     {
                         sat += 3;
                         satirYaz = "0;";
@@ -132,9 +132,12 @@ namespace AnalizZet
             {
                 if(xdeger != null)
                 {
+                    sayac--;
+                    xdeger += sayac.ToString();
                     xdegerD = xdeger.Split(';');
+                    int das = xdegerD.Length;
                     i++;
-                    mediaPlayer.Ctlcontrols.currentPosition = 1.0;
+                    mediaPlayer.Ctlcontrols.currentPosition = 0.0;
                     mediaPlayer.Ctlcontrols.play();
                 }
                 
@@ -143,28 +146,22 @@ namespace AnalizZet
             {
                 if (3 == Convert.ToInt32(mediaPlayer.playState))
                 {
-                    if (i >= xdegerD.Length)
+                    if (i < xdegerD.Length - 1)
                     {
-                        dGV.CurrentCell = dGV.Rows[Convert.ToInt32(xdegerD[i])].Cells[0];
-                        dGV.FirstDisplayedScrollingRowIndex = Convert.ToInt32(xdegerD[i]);
-                        lineChart.ChartAreas[0].CursorX.SetSelectionPosition(Convert.ToInt32(xdegerD[i]), sayac);
+                        //dGV.CurrentCell = dGV.Rows[Convert.ToInt32(xdegerD[i])].Cells[0];
+                        //dGV.FirstDisplayedScrollingRowIndex = Convert.ToInt32(xdegerD[i]);
+                        //lineChart.ChartAreas[0].CursorX.SetSelectionPosition(Convert.ToInt32(xdegerD[i]), sayac);
+                        //lineChart.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
+                        //lineChart1.ChartAreas[0].CursorX.SetSelectionPosition(Convert.ToInt32(xdegerD[i]), sayac);
+                        //lineChart1.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
+                        //lineChart2.ChartAreas[0].CursorX.SetSelectionPosition(Convert.ToInt32(xdegerD[i]), sayac);
+                        //lineChart2.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
+                        //lineChart3.ChartAreas[0].CursorX.SetSelectionPosition(Convert.ToInt32(xdegerD[i]), sayac);
+                        //lineChart3.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
+                        if (i >= 3)
+                            mediaPlayer.Ctlcontrols.currentPosition = i - 2;
                         lineChart.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
-                        lineChart1.ChartAreas[0].CursorX.SetSelectionPosition(Convert.ToInt32(xdegerD[i]), sayac);
-                        lineChart1.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
-                        lineChart2.ChartAreas[0].CursorX.SetSelectionPosition(Convert.ToInt32(xdegerD[i]), sayac);
-                        lineChart2.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
-                        lineChart3.ChartAreas[0].CursorX.SetSelectionPosition(Convert.ToInt32(xdegerD[i]), sayac);
-                        lineChart3.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
-                    }
-
-                    else
-                    {
-                        //mediaPlayer.Ctlcontrols.pause();
-                        if(i>=2)
-                            mediaPlayer.Ctlcontrols.currentPosition = i-2;
-                        //mediaPlayer.Ctlcontrols.play();
-                        lineChart.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
-                        lineChart.ChartAreas[0].AxisX.ScaleView.Zoom(Convert.ToDouble(xdegerD[i])+2, Convert.ToDouble(xdegerD[i]) + 202);
+                        lineChart.ChartAreas[0].AxisX.ScaleView.Zoom(Convert.ToDouble(xdegerD[i]) + 2, Convert.ToDouble(xdegerD[i]) + 202);
                         lineChart1.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
                         lineChart1.ChartAreas[0].AxisX.ScaleView.Zoom(Convert.ToDouble(xdegerD[i]) + 2, Convert.ToDouble(xdegerD[i]) + 202);
                         lineChart2.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
@@ -177,11 +174,57 @@ namespace AnalizZet
                         lineChart1.ChartAreas[0].CursorX.SetSelectionPosition(Convert.ToInt32(xdegerD[i]), Convert.ToInt32(xdegerD[i + 1]));
                         lineChart2.ChartAreas[0].CursorX.SetSelectionPosition(Convert.ToInt32(xdegerD[i]), Convert.ToInt32(xdegerD[i + 1]));
                         lineChart3.ChartAreas[0].CursorX.SetSelectionPosition(Convert.ToInt32(xdegerD[i]), Convert.ToInt32(xdegerD[i + 1]));
+
+                        i++;
                     }
-                    dGV.Rows[Convert.ToInt32(xdegerD[i])].Selected = true;
+
+                    else
+                    {
+                        timer1.Stop();
+                        lineChart.ChartAreas[0].CursorX.SelectionStart = 0;
+                        lineChart.ChartAreas[0].CursorX.SelectionEnd = 0;
+                        lineChart1.ChartAreas[0].CursorX.SelectionStart = 0;
+                        lineChart1.ChartAreas[0].CursorX.SelectionEnd = 0;
+                        lineChart2.ChartAreas[0].CursorX.SelectionStart = 0;
+                        lineChart2.ChartAreas[0].CursorX.SelectionEnd = 0;
+                        lineChart3.ChartAreas[0].CursorX.SelectionStart = 0;
+                        lineChart3.ChartAreas[0].CursorX.SelectionEnd = 0;
+                        mediaPlayer.Ctlcontrols.pause();
+
+                        //mediaPlayer.Ctlcontrols.pause();
+                        //if(i>=2)
+                        //    mediaPlayer.Ctlcontrols.currentPosition = i-2;
+                        //mediaPlayer.Ctlcontrols.play();
+                        //lineChart.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
+                        //lineChart.ChartAreas[0].AxisX.ScaleView.Zoom(Convert.ToDouble(xdegerD[i])+2, Convert.ToDouble(xdegerD[i]) + 202);
+                        //lineChart1.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
+                        //lineChart1.ChartAreas[0].AxisX.ScaleView.Zoom(Convert.ToDouble(xdegerD[i]) + 2, Convert.ToDouble(xdegerD[i]) + 202);
+                        //lineChart2.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
+                        //lineChart2.ChartAreas[0].AxisX.ScaleView.Zoom(Convert.ToDouble(xdegerD[i]) + 2, Convert.ToDouble(xdegerD[i]) + 202);
+                        //lineChart3.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
+                        //lineChart3.ChartAreas[0].AxisX.ScaleView.Zoom(Convert.ToDouble(xdegerD[i]) + 2, Convert.ToDouble(xdegerD[i]) + 202);
+                        //dGV.CurrentCell = dGV.Rows[Convert.ToInt32(xdegerD[i])].Cells[0];
+                        //dGV.FirstDisplayedScrollingRowIndex = Convert.ToInt32(xdegerD[i]);
+                        //lineChart.ChartAreas[0].CursorX.SetSelectionPosition(Convert.ToInt32(xdegerD[i]), Convert.ToInt32(xdegerD[i + 1]));
+                        //lineChart1.ChartAreas[0].CursorX.SetSelectionPosition(Convert.ToInt32(xdegerD[i]), Convert.ToInt32(xdegerD[i + 1]));
+                        //lineChart2.ChartAreas[0].CursorX.SetSelectionPosition(Convert.ToInt32(xdegerD[i]), Convert.ToInt32(xdegerD[i + 1]));
+                        //lineChart3.ChartAreas[0].CursorX.SetSelectionPosition(Convert.ToInt32(xdegerD[i]), Convert.ToInt32(xdegerD[i + 1]));
+                    }
+                    //dGV.Rows[Convert.ToInt32(xdegerD[i])].Selected = true;
                 }
-                if (i < xdegerD.Length)
-                    i++;
+                else
+                {
+                    dGV.CurrentCell = dGV.Rows[Convert.ToInt32(xdegerD[i])].Cells[0];
+                    dGV.FirstDisplayedScrollingRowIndex = Convert.ToInt32(xdegerD[i]);
+                    lineChart.ChartAreas[0].CursorX.SetSelectionPosition(Convert.ToInt32(xdegerD[i]), sayac);
+                    lineChart.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
+                    lineChart1.ChartAreas[0].CursorX.SetSelectionPosition(Convert.ToInt32(xdegerD[i]), sayac);
+                    lineChart1.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
+                    lineChart2.ChartAreas[0].CursorX.SetSelectionPosition(Convert.ToInt32(xdegerD[i]), sayac);
+                    lineChart2.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
+                    lineChart3.ChartAreas[0].CursorX.SetSelectionPosition(Convert.ToInt32(xdegerD[i]), sayac);
+                    lineChart3.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
+                }
             }
         }
 
@@ -460,7 +503,7 @@ namespace AnalizZet
                 mediaPlayer.Ctlcontrols.stop();
                 mediaPlayer.Ctlcontrols.currentPosition = saniyeTut-2;
                 mediaPlayer.Ctlcontrols.play();
-                i = saniyeTut-2;
+                i = saniyeTut-1;
                 dGV.CurrentCell = dGV.Rows[Convert.ToInt32(xdegerD[i])].Cells[0];
                 dGV.FirstDisplayedScrollingRowIndex = Convert.ToInt32(xdegerD[i]);
                 chart.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
