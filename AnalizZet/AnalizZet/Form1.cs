@@ -30,11 +30,14 @@ namespace AnalizZet
         Point? positionn = null;
         ToolTip toolTip = new ToolTip();
         double saniye = 1.0, currentSaniye;
+        double[] columnAccX;
+        double[] columnAccY;
+        double[] columnAccZ;
         public string veriYolu { get; set; }
         public string videoYolu { get; set; }
         public string kayitYeri { get; set; }
         public string etiketDosyaAdi { get; set; }
-        int xa, saniyeTut, i = 0, sat = 1;
+        int xa, saniyeTut, i = 0, sat = 1, minn = 0, maxx = 0;
 
         private void rotaCiz_Click(object sender, EventArgs e)
         {
@@ -75,7 +78,7 @@ namespace AnalizZet
                 satirD = new string[1];
                 sat = 1;
             }
-            //streamWriter.WriteLine("AccX;AccY;AccZ;GraX;GraY;GraZ;LAX;LAY;LAZ;GyroX;GyroY;GyroZ;Time2;Etiket");
+            streamWriter.WriteLine("AccX;AccY;AccZ;GraX;GraY;GraZ;LAX;LAY;LAZ;GyroX;GyroY;GyroZ;Time2;Etiket");
             for (int k = 0; k < sayac - 2; k++)
             {
                 if (sat != satirD.Length && satirD != null)
@@ -140,7 +143,30 @@ namespace AnalizZet
                     mediaPlayer.Ctlcontrols.currentPosition = 0.0;
                     mediaPlayer.Ctlcontrols.play();
                 }
-                
+                columnAccX = new double[dGV.Rows.Count];
+                columnAccX= (from DataGridViewRow row in dGV.Rows
+                               where row.Cells["AccX"].FormattedValue.ToString() != string.Empty
+                               select Double.Parse(row.Cells["AccX"].Value.ToString(), System.Globalization.CultureInfo.InvariantCulture)).ToArray();
+                columnAccY = new double[dGV.Rows.Count];
+                columnAccY = (from DataGridViewRow row in dGV.Rows
+                              where row.Cells["AccY"].FormattedValue.ToString() != string.Empty
+                              select Double.Parse(row.Cells["AccY"].Value.ToString(), System.Globalization.CultureInfo.InvariantCulture)).ToArray();
+                columnAccZ = new double[dGV.Rows.Count];
+                columnAccZ = (from DataGridViewRow row in dGV.Rows
+                              where row.Cells["AccZ"].FormattedValue.ToString() != string.Empty
+                              select double.Parse(row.Cells["AccZ"].Value.ToString(), System.Globalization.CultureInfo.InvariantCulture)).ToArray();
+
+                minn = Convert.ToInt32(columnAccX.Min());
+                maxx = Convert.ToInt32(columnAccY.Max());
+                if(minn > Convert.ToInt32(columnAccY.Min()))
+                {
+                    minn = Convert.ToInt32(columnAccY.Min());
+                }
+                else if(minn > Convert.ToInt32(columnAccZ.Min()))
+                {
+                    minn = Convert.ToInt32(columnAccZ.Min());
+                }
+
             }
             else
             {
@@ -158,8 +184,8 @@ namespace AnalizZet
                         //lineChart2.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
                         //lineChart3.ChartAreas[0].CursorX.SetSelectionPosition(Convert.ToInt32(xdegerD[i]), sayac);
                         //lineChart3.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
-                        if (i >= 3)
-                            mediaPlayer.Ctlcontrols.currentPosition = i - 2;
+                        if (i >= 2)
+                            mediaPlayer.Ctlcontrols.currentPosition = i - 1;
                         lineChart.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
                         lineChart.ChartAreas[0].AxisX.ScaleView.Zoom(Convert.ToDouble(xdegerD[i]) + 2, Convert.ToDouble(xdegerD[i]) + 202);
                         lineChart1.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
@@ -320,39 +346,42 @@ namespace AnalizZet
             //}
             while ((satir = StreamReader.ReadLine()) != null)//&& sayac <= sayacB
             {
-                dr = dt.NewRow();
-                degerler = satir.Split(';');
-                dr[0] = (sayac).ToString();
-                for (int i = 1; i < degerler.Length + 1; i++)
+                if ("" != satir)
                 {
-                    dr[i] = degerler[i - 1];
+                    dr = dt.NewRow();
+                    degerler = satir.Split(';');
+                    dr[0] = (sayac).ToString();
+                    for (int i = 1; i < degerler.Length + 1; i++)
+                    {
+                        dr[i] = degerler[i - 1];
+                    }
+                    dt.Rows.Add(dr);
+                    sayac++;
                 }
-                dt.Rows.Add(dr);
-                sayac++;
             }
             StreamReader.Close();
             dGV.DataSource = dt;
 
-            lineChart.ChartAreas[0].AxisY.ScaleView.Zoom(-10, 15);
+            //lineChart.ChartAreas[0].AxisY.ScaleView.Zoom(-10, 15);
             lineChart.ChartAreas[0].AxisX.ScaleView.Zoom(0, 200);
             lineChart.ChartAreas[0].AxisX.ScaleView.Zoomable = true;
             lineChart.ChartAreas[0].CursorX.IsUserEnabled = true;
             lineChart.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
             //////////////////////////////////////////////////////////////
-            lineChart1.ChartAreas[0].AxisY.ScaleView.Zoom(-10, 15);
+            //lineChart1.ChartAreas[0].AxisY.ScaleView.Zoom(-10, 15);
             lineChart1.ChartAreas[0].AxisX.ScaleView.Zoom(0, 200);
             lineChart1.ChartAreas[0].AxisX.ScaleView.Zoomable = true;
             lineChart1.ChartAreas[0].CursorX.IsUserEnabled = true;
             lineChart1.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
             ///////////////////////////////////////////////////////////////
 
-            lineChart2.ChartAreas[0].AxisY.ScaleView.Zoom(-10, 15);
+            //lineChart2.ChartAreas[0].AxisY.ScaleView.Zoom(-10, 15);
             lineChart2.ChartAreas[0].AxisX.ScaleView.Zoom(0, 200);
             lineChart2.ChartAreas[0].AxisX.ScaleView.Zoomable = true;
             lineChart2.ChartAreas[0].CursorX.IsUserEnabled = true;
             lineChart2.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
             //////////////////////////////////////////////////////////////
-            lineChart3.ChartAreas[0].AxisY.ScaleView.Zoom(-10, 15);
+            //lineChart3.ChartAreas[0].AxisY.ScaleView.Zoom(-10, 15);
             lineChart3.ChartAreas[0].AxisX.ScaleView.Zoom(0, 200);
             lineChart3.ChartAreas[0].AxisX.ScaleView.Zoomable = true;
             lineChart3.ChartAreas[0].CursorX.IsUserEnabled = true;

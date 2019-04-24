@@ -21,7 +21,7 @@ namespace AnalizZet
         Form3 form3;
         string kayitYeri = "";
         int sayi = 1;
-        string dosyAdi,konum;
+        string dosyAdi, konum;
         string[] etiketDosyaAdi;
         private void veriSecBtn_Click(object sender, EventArgs e)
         {
@@ -32,7 +32,7 @@ namespace AnalizZet
             {
                 veriYoluTxt.Text = veriFile.FileName;
                 veriDosyaAdi.Text = veriFile.SafeFileName;
-                dosyAdi = "\\"+veriFile.SafeFileName;
+                dosyAdi = "\\" + veriFile.SafeFileName;
                 konum = veriFile.FileName.Replace("Veri.txt", "Konum.txt");
             }
         }
@@ -81,11 +81,11 @@ namespace AnalizZet
 
                 using (StreamReader inputReader = new StreamReader(veriYoluTxt.Text))
                 {
-                    using (StreamWriter outputWriter = File.AppendText(kayitYeri+dosyAdi))
+                    using (StreamWriter outputWriter = File.AppendText(kayitYeri + dosyAdi))
                     {
                         while (null != (tempLineValue = inputReader.ReadLine()))
                         {
-                            if(sayi == 1)
+                            if (sayi == 1)
                             {
                                 if (tempLineValue == "AccX;AccY;AccZ;GraX;GraY;GraZ;LAX;LAY;LAZ;GyroX;GyroY;GyroZ;Time2;")
                                 {
@@ -103,12 +103,12 @@ namespace AnalizZet
                 }
 
                 form1 = new Form1();
-                form1.veriYolu = kayitYeri+dosyAdi;
+                form1.veriYolu = kayitYeri + dosyAdi;
                 form1.videoYolu = videoTxt.Text;
                 form1.kayitYeri = kayitYeri;
                 form1.etiketDosyaAdi = label7.Text;
                 Harita.konumlar = konum;
-                Form3.yol = kayitYeri+dosyAdi;
+                Form3.yol = kayitYeri + dosyAdi;
                 this.Hide();
                 form1.ShowDialog();
                 this.Close();
