@@ -143,29 +143,29 @@ namespace AnalizZet
                     mediaPlayer.Ctlcontrols.currentPosition = 0.0;
                     mediaPlayer.Ctlcontrols.play();
                 }
-                columnAccX = new double[dGV.Rows.Count];
-                columnAccX= (from DataGridViewRow row in dGV.Rows
-                               where row.Cells["AccX"].FormattedValue.ToString() != string.Empty
-                               select Double.Parse(row.Cells["AccX"].Value.ToString(), System.Globalization.CultureInfo.InvariantCulture)).ToArray();
-                columnAccY = new double[dGV.Rows.Count];
-                columnAccY = (from DataGridViewRow row in dGV.Rows
-                              where row.Cells["AccY"].FormattedValue.ToString() != string.Empty
-                              select Double.Parse(row.Cells["AccY"].Value.ToString(), System.Globalization.CultureInfo.InvariantCulture)).ToArray();
-                columnAccZ = new double[dGV.Rows.Count];
-                columnAccZ = (from DataGridViewRow row in dGV.Rows
-                              where row.Cells["AccZ"].FormattedValue.ToString() != string.Empty
-                              select double.Parse(row.Cells["AccZ"].Value.ToString(), System.Globalization.CultureInfo.InvariantCulture)).ToArray();
+                //columnAccX = new double[dGV.Rows.Count];
+                //columnAccX= (from DataGridViewRow row in dGV.Rows
+                //               where row.Cells["AccX"].FormattedValue.ToString() != string.Empty
+                //               select Double.Parse(row.Cells["AccX"].Value.ToString(), System.Globalization.CultureInfo.InvariantCulture)).ToArray();
+                //columnAccY = new double[dGV.Rows.Count];
+                //columnAccY = (from DataGridViewRow row in dGV.Rows
+                //              where row.Cells["AccY"].FormattedValue.ToString() != string.Empty
+                //              select Double.Parse(row.Cells["AccY"].Value.ToString(), System.Globalization.CultureInfo.InvariantCulture)).ToArray();
+                //columnAccZ = new double[dGV.Rows.Count];
+                //columnAccZ = (from DataGridViewRow row in dGV.Rows
+                //              where row.Cells["AccZ"].FormattedValue.ToString() != string.Empty
+                //              select double.Parse(row.Cells["AccZ"].Value.ToString(), System.Globalization.CultureInfo.InvariantCulture)).ToArray();
 
-                minn = Convert.ToInt32(columnAccX.Min());
-                maxx = Convert.ToInt32(columnAccY.Max());
-                if(minn > Convert.ToInt32(columnAccY.Min()))
-                {
-                    minn = Convert.ToInt32(columnAccY.Min());
-                }
-                else if(minn > Convert.ToInt32(columnAccZ.Min()))
-                {
-                    minn = Convert.ToInt32(columnAccZ.Min());
-                }
+                //minn = Convert.ToInt32(columnAccX.Min());
+                //maxx = Convert.ToInt32(columnAccY.Max());
+                //if(minn > Convert.ToInt32(columnAccY.Min()))
+                //{
+                //    minn = Convert.ToInt32(columnAccY.Min());
+                //}
+                //else if(minn > Convert.ToInt32(columnAccZ.Min()))
+                //{
+                //    minn = Convert.ToInt32(columnAccZ.Min());
+                //}
 
             }
             else
@@ -362,7 +362,7 @@ namespace AnalizZet
             StreamReader.Close();
             dGV.DataSource = dt;
 
-            //lineChart.ChartAreas[0].AxisY.ScaleView.Zoom(-10, 15);
+            //lineChart.ChartAreas[0].AxisY.ScaleView.Zoom(-6, 13);
             lineChart.ChartAreas[0].AxisX.ScaleView.Zoom(0, 200);
             lineChart.ChartAreas[0].AxisX.ScaleView.Zoomable = true;
             lineChart.ChartAreas[0].CursorX.IsUserEnabled = true;
