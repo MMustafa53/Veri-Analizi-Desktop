@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WMPLib;
 
 namespace AnalizZet
 {
@@ -21,12 +22,47 @@ namespace AnalizZet
         Form3 form3;
         string kayitYeri = "";
         int sayi = 1;
-        string dosyAdi, konum;
-        string[] etiketDosyaAdi;
+        string dosyAdi, konum, ilk, son;
+        string[] etiketDosyaAdi, ilkD, sonD;
+        int farkk = 0;
+        TimeSpan fark = TimeSpan.MinValue;
+        private void zamanFarki(int x)
+        {
+            
+            if (x == 0)
+            {
+                StreamReader sr = new StreamReader(veriYoluTxt.Text.ToString());
+                while (sr.ReadLine() != null)
+                {
+                    if (sr.ReadLine() != "AccX;AccY;AccZ;GraX;GraY;GraZ;LAX;LAY;LAZ;GyroX;GyroY;GyroZ;Time2;")
+                    {
+                        ilkD = sr.ReadLine().Split(';');
+                        ilk = ilkD[ilkD.Length - 1];
+                        break;
+                    }
+
+                }
+                son = File.ReadLines(veriYoluTxt.Text.ToString()).Last();
+                sonD = son.Split(';');
+                son = sonD[sonD.Length - 1];
+                TimeSpan tilk = TimeSpan.Parse(ilk);
+                TimeSpan tson = TimeSpan.Parse(son);
+                fark = tson - tilk;
+            }
+            else if( x == 1)
+            {
+                WindowsMediaPlayer wmp = new WindowsMediaPlayerClass();
+                IWMPMedia mediainfo = wmp.newMedia(videoTxt.Text.ToString());
+                string sonV = "00:"+mediainfo.durationString;
+                TimeSpan tsv = TimeSpan.Parse(sonV);
+                TimeSpan sonFark = fark - tsv;
+                farkk = Convert.ToInt16(sonFark.TotalSeconds);
+            }
+        }
         private void veriSecBtn_Click(object sender, EventArgs e)
         {
             OpenFileDialog veriFile = new OpenFileDialog();
-            veriFile.Filter = "Metin Dosyası |*.txt|Bütün Dosyalar|*.*";
+            veriFile.Filter = "Metin Dosyası |*.txt| Bütün Dosyalar|*.*";
             veriFile.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             if (veriFile.ShowDialog() == DialogResult.OK)
             {
@@ -34,6 +70,7 @@ namespace AnalizZet
                 veriDosyaAdi.Text = veriFile.SafeFileName;
                 dosyAdi = "\\" + veriFile.SafeFileName;
                 konum = veriFile.FileName.Replace("Veri.txt", "Konum.txt");
+                zamanFarki(0);
             }
         }
 
@@ -46,6 +83,7 @@ namespace AnalizZet
             {
                 videoTxt.Text = videoFile.FileName;
                 videoDosyaAdi.Text = videoFile.SafeFileName;
+                zamanFarki(1);
             }
         }
 

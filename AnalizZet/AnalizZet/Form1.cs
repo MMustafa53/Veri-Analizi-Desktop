@@ -184,7 +184,7 @@ namespace AnalizZet
                         //lineChart2.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
                         //lineChart3.ChartAreas[0].CursorX.SetSelectionPosition(Convert.ToInt32(xdegerD[i]), sayac);
                         //lineChart3.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
-                        if (i >= 2)
+                        if (i >= 1)
                             mediaPlayer.Ctlcontrols.currentPosition = i - 1;
                         lineChart.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
                         lineChart.ChartAreas[0].AxisX.ScaleView.Zoom(Convert.ToDouble(xdegerD[i]) + 2, Convert.ToDouble(xdegerD[i]) + 202);
