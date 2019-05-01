@@ -24,7 +24,7 @@ namespace AnalizZet
         int sayi = 1;
         string dosyAdi, konum, ilk, son;
         string[] etiketDosyaAdi, ilkD, sonD;
-        int farkk = 0;
+        public static int farkk = 0;
         TimeSpan fark = TimeSpan.MinValue;
         private void zamanFarki(int x)
         {
@@ -34,7 +34,7 @@ namespace AnalizZet
                 StreamReader sr = new StreamReader(veriYoluTxt.Text.ToString());
                 while (sr.ReadLine() != null)
                 {
-                    if (sr.ReadLine() != "AccX;AccY;AccZ;GraX;GraY;GraZ;LAX;LAY;LAZ;GyroX;GyroY;GyroZ;Time2;")
+                    if (sr.ReadLine() != "AccX;AccY;AccZ;GraX;GraY;GraZ;LAX;LAY;LAZ;GyroX;GyroY;GyroZ;Time2" && sr.ReadLine() != "AccX;AccY;AccZ;GraX;GraY;GraZ;LAX;LAY;LAZ;GyroX;GyroY;GyroZ;Time2;")
                     {
                         ilkD = sr.ReadLine().Split(';');
                         ilk = ilkD[ilkD.Length - 1];

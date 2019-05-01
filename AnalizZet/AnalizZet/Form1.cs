@@ -130,7 +130,6 @@ namespace AnalizZet
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-           
             if (i == 0)
             {
                 if(xdeger != null)
@@ -184,8 +183,8 @@ namespace AnalizZet
                         //lineChart2.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
                         //lineChart3.ChartAreas[0].CursorX.SetSelectionPosition(Convert.ToInt32(xdegerD[i]), sayac);
                         //lineChart3.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
-                        if (i >= 1)
-                            mediaPlayer.Ctlcontrols.currentPosition = i - 1;
+                        if (i > girisEkrani.farkk)
+                            mediaPlayer.Ctlcontrols.currentPosition = i - girisEkrani.farkk;
                         lineChart.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
                         lineChart.ChartAreas[0].AxisX.ScaleView.Zoom(Convert.ToDouble(xdegerD[i]) + 2, Convert.ToDouble(xdegerD[i]) + 202);
                         lineChart1.ChartAreas[0].AxisX.ScaleView.Scroll(Convert.ToDouble(xdegerD[i]) + 2);
@@ -257,7 +256,7 @@ namespace AnalizZet
         private void Form1_Shown(object sender, EventArgs e)
         {
             grafikCizme();
-            mediaPlayer.Ctlcontrols.pause();
+            //mediaPlayer.Ctlcontrols.pause();
         }
 
         private void grafikCiz_Click(object sender, EventArgs e)
@@ -336,7 +335,7 @@ namespace AnalizZet
                 dt.Columns.Add("Sayac");
                 foreach (string c in columnN)
                 {
-                    dt.Columns.Add(c);
+                     dt.Columns.Add(c);
                 }
             }
             //if (sayacB > 100)
