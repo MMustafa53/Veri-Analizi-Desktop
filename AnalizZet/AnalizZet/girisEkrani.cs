@@ -57,6 +57,7 @@ namespace AnalizZet
                 TimeSpan tsv = TimeSpan.Parse(sonV);
                 TimeSpan sonFark = fark - tsv;
                 farkk = Convert.ToInt16(sonFark.TotalSeconds);
+                farkk++;
             }
         }
         private void veriSecBtn_Click(object sender, EventArgs e)

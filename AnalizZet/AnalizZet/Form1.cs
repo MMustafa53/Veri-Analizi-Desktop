@@ -88,25 +88,25 @@ namespace AnalizZet
                         switch (satirD[sat + 2])
                         {
                             case "Çukur":
-                                satirYaz = "Çukur;";
+                                satirYaz = "Çukur";
                                 break;
                             case "Kasis":
-                                satirYaz = "Kasis;";
+                                satirYaz = "Kasis";
                                 break;
                             case "Rampa":
-                                satirYaz = "Rampa;";
+                                satirYaz = "Rampa";
                                 break;
                             case "Viraj":
-                                satirYaz = "Viraj;";
+                                satirYaz = "Viraj";
                                 break;
                             case "Şerit Değiştirme":
-                                satirYaz = "Şerit;";
+                                satirYaz = "Şerit";
                                 break;
                             case "Ani İvmelenme":
-                                satirYaz = "İvme;";
+                                satirYaz = "İvme";
                                 break;
                             case "Diğer":
-                                satirYaz = "Diğer;";
+                                satirYaz = "Diğer";
                                 break;
                             default:
                                 break;
@@ -116,7 +116,7 @@ namespace AnalizZet
                     else if (k + 2 == Convert.ToInt32(satirD[sat + 1]))
                     {
                         sat += 3;
-                        satirYaz = "0;";
+                        satirYaz = "0";
                     }
                 }
                 streamWriter.WriteLine(dGV.Rows[k].Cells["AccX"].Value.ToString() + ";" + dGV.Rows[k].Cells["AccY"].Value.ToString() + ";" + dGV.Rows[k].Cells["AccZ"].Value.ToString()
