@@ -25,7 +25,7 @@ namespace AnalizZet
         string[] columnN, degerler, saniyeD, xdegerD, satirD;
         DataTable dt = new DataTable();
         DataRow dr;
-        string satir, biOnceki, saniyeler, xdeger, satirDegerleri, satirYaz = "0";
+        string satir, biOnceki, saniyeler, xdeger, satirDegerleri="", satirYaz = "0";
         int sayac = 1, sayacB = 100, buton = 0;
         Point? positionn = null;
         ToolTip toolTip = new ToolTip();
